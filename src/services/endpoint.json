@@ -1,0 +1,7 @@
+{
+    "create": "employee/create",
+    "update": "employee/update",
+    "employees" : "employee/",
+    "countries" : "employee/getCountries",
+    "areas" : "employee/getCountries"
+}
