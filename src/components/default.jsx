@@ -233,18 +233,18 @@ export function BottomAppBar() {
           <div className={classes.paper}>
               <h3>Add a new employee</h3>       
             <div>
-                <TextField inputRef={fName} required id="standard-required" label="First Name" />
-                <TextField inputRef={sName} id="standard-required" label="Second Name" />
+                <TextField inputRef={fName} required id="fName" label="First Name" />
+                <TextField inputRef={sName} id="sName" label="Second Name" />
             </div>
             <br/>
             <div>
-                <TextField inputRef={lName1} required id="standard-required" label="Last Name 1" />
-                <TextField inputRef={lName2} required id="standard-required" label="Last Name 2" />
+                <TextField inputRef={lName1} required id="lName1" label="Last Name 1" />
+                <TextField inputRef={lName2} required id="lName2" label="Last Name 2" />
             </div>
             <br/>
             <div>
               <TextField
-                  id="select-type"
+                  id="select-typeidType"
                   select
                   label="ID Type"
                   value={idType}
@@ -257,7 +257,7 @@ export function BottomAppBar() {
                       </MenuItem>
                   ))}
               </TextField>
-              <TextField inputRef={eId} required id="standard-required" label="ID" />
+              <TextField inputRef={eId} required id="standard-requiredeId" label="ID" />
             </div>
             <br/>
             <div>
