@@ -12,10 +12,8 @@ constructor() {
     }
 
     async componentDidMount() {
-        console.log('antes');
         await get(employees).then(res => {
-            console.log('res: ',res.data.message);
-            console.log('Keys: ',Object.values(res.data.message));
+            // console.log('res: ',res.data.message);
             this.setState({users : res.data.message })
         });
     }
@@ -27,7 +25,7 @@ constructor() {
             {this.state.users.map(user => <li>{user.name1} mail: {user.mail}</li>)}
             </ul> */}
             <div style={{ height: '85vh', width: '100%' }}>
-      <DataGrid rows={this.state.users} columns={columns} />
+      <DataGrid rows={this.state.users} columns={columns} pageSize={10}/>
     </div>
         </div>
     )
