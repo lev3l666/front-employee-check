@@ -106,10 +106,8 @@ export function BottomAppBar() {
     const eId = useRef(null);
 
     const fetchRequest = useCallback(async () => {
-      console.log('fbame', sName.current.value)
       let tmpSname = (sName.current.value).trim();
       if ( !tmpSname ) {
-        console.log('nulleado');
         tmpSname = null;
       }
       const params = {
@@ -126,12 +124,28 @@ export function BottomAppBar() {
       
       const request = await post(create, params).then(res => {
         console.log('create: ',res.data);
-          // setCountryList(res.data);
+        if (res.data.error === null) {
+          let msg = res.data.message;
+          console.log(msg);
+          alert(`User ${msg.name1} created!\nYour new e-mail is: ${msg.mail}`);
+          handleClose();
+        }
+        else {
+          console.log(res.data.message);
+          alert(`Error!:\n${res.data.message}\n${res.data.error}`);
+        }        
       }).catch(error => {
-        console.log(error)
+        console.log('Err',error);
+        if ( error !== undefined) {
+          console.log(error.response.data);
+          let msgParser = JSON.parse(JSON.stringify(error.response.data.message));
+          let errorMsg = JSON.parse(JSON.stringify(error.response.data.error));
+          console.log(msgParser);
+          alert(`Error!:\n${msgParser}\n${errorMsg}`);
+          }
       });
       return request;
-  }, [create, country, idType, area, selectedDate, fName, sName, lName1, lName2, eId]);
+  }, [create, country, idType, area, selectedDate, fName, sName, lName1, lName2, eId, handleClose]);
 
     //effects
   //   useEffect(() => {
@@ -229,25 +243,25 @@ export function BottomAppBar() {
             </div>
             <br/>
             <div>
-            <TextField
-                id="select-type"
-                select
-                label="ID Type"
-                value={idType}
-                onChange={handleIdTypeChange}
-                helperText="Please select your ID Type"
-                >
-                {Object.values(idTypeList).map((option) => (
-                    <MenuItem key={option} value={option}>
-                    {option}
-                    </MenuItem>
-                ))}
-             </TextField>
-                <TextField inputRef={eId} required id="standard-required" label="ID" />
+              <TextField
+                  id="select-type"
+                  select
+                  label="ID Type"
+                  value={idType}
+                  onChange={handleIdTypeChange}
+                  helperText="Please select your ID Type"
+                  >
+                  {Object.values(idTypeList).map((option) => (
+                      <MenuItem key={option} value={option}>
+                      {option}
+                      </MenuItem>
+                  ))}
+              </TextField>
+              <TextField inputRef={eId} required id="standard-required" label="ID" />
             </div>
             <br/>
             <div>
-            <TextField
+              <TextField
                 id="select-country"
                 select
                 label="Country"
@@ -261,7 +275,7 @@ export function BottomAppBar() {
                     </MenuItem>
                 ))}
              </TextField>
-             <TextField
+              <TextField
                 id="select-area"
                 select
                 label="Area"
