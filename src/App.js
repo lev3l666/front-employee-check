@@ -1,12 +1,12 @@
 import './App.css';
 import * as React from 'react';
-import { EmployeeList } from "./components/grid.jsx";
+import { BottomAppBar } from "./components/default.jsx";
 
 function App() {
   return (
     <div className="App">
       
-      <EmployeeList></EmployeeList>
+      <BottomAppBar></BottomAppBar>
     </div>
   );
 }
