@@ -84,6 +84,7 @@ const renderDeleteButton = (params) => {
                       console.log('delete: ',res.data);
                       if (res.data.error === null) {
                         alert(`User deleted!`);
+                        window.location.reload(true);
                       }
                       else {
                         alert(`Error!:${res.data.error}\n${res.data.message}`);

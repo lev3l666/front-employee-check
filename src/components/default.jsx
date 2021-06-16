@@ -131,6 +131,7 @@ export function BottomAppBar() {
           alert(`User ${msg.name1} created!\nYour new e-mail is: ${msg.mail}`);
           setRandom(Math.random())
           handleClose();
+          window.location.reload(true);
         }
         else {
           console.log(res.data.message);
