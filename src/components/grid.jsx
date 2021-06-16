@@ -79,7 +79,6 @@ const renderDeleteButton = (params) => {
                   console.log('===>>>',params.row.id)
                   const result = window.confirm(`Do you want to delete user ${params.row.name1} ${params.row.lastName1}?`);
                   if (result === true) {
-                    console.log('se fue');
                     await del(deleteUser, params.row.id).then(res => {
                       console.log('delete: ',res.data);
                       if (res.data.error === null) {
