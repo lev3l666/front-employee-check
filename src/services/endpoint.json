@@ -1,6 +1,7 @@
 {
     "create": "employee/create",
     "update": "employee/update",
+    "deleteUser": "employee/delete",
     "employees" : "employee/",
     "countries" : "employee/countries",
     "areas" : "employee/areas",

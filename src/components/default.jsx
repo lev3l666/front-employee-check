@@ -80,6 +80,7 @@ export function BottomAppBar() {
     const [areaList, setAreaList] = React.useState(false);
     const [area, setArea] = React.useState('admn');
     const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [random, setRandom] = React.useState(Math.random());
     // handlers
     const handleOpen = () => {
     setOpen(true);
@@ -128,11 +129,12 @@ export function BottomAppBar() {
           let msg = res.data.message;
           console.log(msg);
           alert(`User ${msg.name1} created!\nYour new e-mail is: ${msg.mail}`);
+          setRandom(Math.random())
           handleClose();
         }
         else {
           console.log(res.data.message);
-          alert(`Error!:\n${res.data.message}\n${res.data.error}`);
+          alert(`Error!:${res.data.error}\n${res.data.message}`);
         }        
       }).catch(error => {
         console.log('Err',error);
@@ -141,7 +143,7 @@ export function BottomAppBar() {
           let msgParser = JSON.parse(JSON.stringify(error.response.data.message));
           let errorMsg = JSON.parse(JSON.stringify(error.response.data.error));
           console.log(msgParser);
-          alert(`Error!:\n${msgParser}\n${errorMsg}`);
+          alert(`Error!:${errorMsg}\n${msgParser}`);
           }
       });
       return request;
@@ -201,7 +203,7 @@ export function BottomAppBar() {
         <Typography className={classes.text} variant="h5" gutterBottom>
           Employee list
         </Typography>
-        <EmployeeList></EmployeeList>
+        <EmployeeList triggerRender={random}></EmployeeList>
       </Paper>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>

@@ -38,9 +38,14 @@ let header = {
           resolve(data);
         })
         .catch((error) => {
-  
+          resolve(error.response)
         });
     });
   };
 
-export {post, get, put, apiUrl };
+  const del = async function (endpoint, params) {
+    console.log(endpoint, params);
+    return await axios.delete(`${apiUrl}${endpoint}/${params}`, {headers: header});
+  };
+
+export {post, get, put, del, apiUrl };
